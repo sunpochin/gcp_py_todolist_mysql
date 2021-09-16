@@ -13,10 +13,9 @@ def hello_world():
     name = os.environ.get("NAME", "World")
     return "Hello {}!".format(name)
 
-@app.route("/hello")
-def hello():
-    name = os.environ.get("NAME", "World")
-    return "Hello {}!".format(name)
+@app.route("/<username>")
+def hello(username):
+    return "Hello {}!".format(username)
 
 
 if __name__ == "__main__":
