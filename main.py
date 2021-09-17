@@ -1,5 +1,10 @@
 # from https://www.geeksforgeeks.org/setting-up-google-cloud-sql-with-flask/
 
+#https://stackoverflow.com/a/65781521/720276
+# For anyone coming to this page when trying to find a solution for sqlalchemy, all you need to do is:
+
+# pip install PyMySQL
+# And adjust your connection string to use PyMySQL, from mysql:// to mysql+pymysql://
 
 import os
 
@@ -17,7 +22,8 @@ INSTANCE_NAME = "gcp-mysql-python:asia-east1:gcp-mysql"
 # configuration
 app.config["SECRET_KEY"] = "yoursecretkey"
 # app.config["SQLALCHEMY_DATABASE_URI"]= f"mysql + mysqldb://root:{PASSWORD}@{PUBLIC_IP_ADDRESS}/{DBNAME}?unix_socket =/cloudsql/{PROJECT_ID}:{INSTANCE_NAME}"
-app.config["SQLALCHEMY_DATABASE_URI"]= f"mysql://root:{PASSWORD}@{PUBLIC_IP_ADDRESS}/{DBNAME}"
+
+app.config["SQLALCHEMY_DATABASE_URI"]= f"mysql+pymysql://root:{PASSWORD}@{PUBLIC_IP_ADDRESS}/{DBNAME}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]= True
 
 db = SQLAlchemy(app)
